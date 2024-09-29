@@ -98,22 +98,12 @@ st.write(CTRPv2_AUC.head())
 CTRPv2_RNAseq_TPM = pd.read_csv("./DataIn/CTRPv2/CTRPv2_RNAseq_TPM_clean.txt", sep="\t")
 best_params_df = pd.read_csv("./Output/ALL_DRUGS_ALL_MODELS.csv")
 cpd_column = CTRPv2_AUC['cpd_name']
+st.write("Testing")
 st.write(len(cpd_column))
 unique_drugs = cpd_column.dropna().unique()
 possibleDrugs = unique_drugs
 # possibleDrugs = np.unique(CTRPv2_AUC['cpd_name'])
-def display_sample_file():
-    st.subheader("Sample TSV File Format:")
-    sample_data = {
-        'gene_id': ["ENSG00000223972.4", 'ENSG00000223962.4', 'ENSG00000223972.9'],
-        'gene_name': ['GeneA', 'GeneB', 'GeneC'],
-        'Sample1': [10, 20, 30],
-        'Sample2': [15, 25, 35],
-        'Sample3': [18, 28, 38]
-    }
-    sample_df = pd.DataFrame(sample_data)
-    st.dataframe(sample_df)
-    st.write("Upload a file with similar structure to proceed.")
+
 # Function to convert RPKM to TPM
 def RPKM_to_TPM(sample_RPKMs):
     return (sample_RPKMs / sample_RPKMs.sum()) * 10**6
