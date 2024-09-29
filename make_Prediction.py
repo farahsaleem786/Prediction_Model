@@ -87,14 +87,10 @@ CTRPv2_RNAseq_TPM = pd.read_csv("./DataIn/CTRPv2/CTRPv2_RNAseq_TPM_clean.txt", s
 
 best_params_df = pd.read_csv("./Output/ALL_DRUGS_ALL_MODELS.csv")
 
-if 'cpd_name' in CTRPv2_AUC.columns:
-    possibleDrugs = np.unique(CTRPv2_AUC['cpd_name'])
-    st.write("Possible drugs:", possibleDrugs)
-else:
-    st.error("Column 'cpd_name' not found in the deployed environment.")
-    st.write("Available columns:", CTRPv2_AUC.columns)
-possibleDrugs = np.unique(CTRPv2_AUC['cpd_name'])
-
+cpd_column = CTRPv2_AUC.get('cpd_name')
+unique_drugs = cpd_column.dropna().unique()
+possibleDrugs=unique_drugs
+# possibleDrugs = np.unique(CTRPv2_AUC['cpd_name'])
 def display_sample_file():
     st.subheader("Sample TSV File Format:")
     sample_data = {
