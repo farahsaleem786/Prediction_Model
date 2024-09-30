@@ -9,7 +9,6 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
 import numpy as np
-import os
 # Function to calculate number of unique cell lines per drug
 def calculate_avg_auc_threshold_counts(ctrp_data, threshold):
     # Filter drugs based on the average AUC threshold
@@ -549,21 +548,7 @@ def plot_avg_auc_distribution(ctrp_data):
 
 # Main function to display CTRP data analysis with interactive options
 def display_ctrp_data_analysis():
-    #ctrp_data = read_ctrp_data("DataIn/CTRPv2/CTRPv2_AUC_clean.txt")
- 
-
-    file_path = "./DataIn/CTRPv2/CTRPv2_AUC_clean.txt"
-
-    if os.path.exists(file_path):
-        st.write("present")
-        try:
-            ctrp_data = pd.read_csv(file_path, sep='\t')  # Try reading directly with pandas
-            st.write(ctrp_data.head())
-        except Exception as e:
-            st.error(f"Error while reading file: {e}")
-    else:
-        st.error(f"Error: File '{file_path}' not found.")
-
+    ctrp_data = read_ctrp_data("./DataIn/CTRPv2/CTRPv2_AUC_clean.txt")
     st.title("CTRP Drug Response Data Analysis")
     st.dataframe(ctrp_data, height=400, width=1500)
 

@@ -11,7 +11,7 @@ import numpy as np
 
 from ccle_analysis import display_ccle_data_analysis
 from ctrp_analysis import display_ctrp_data_analysis
-
+from make_Prediction import new_data
 
 # Function to load model results data
 def load_model_results():
@@ -303,7 +303,7 @@ def main():
 
     selection = option_menu(
         menu_title=None,
-        options=["Home", "CTRP Data Analysis", "CCLE Data Analysis"],
+        options=["Home", "CTRP Data Analysis", "CCLE Data Analysis", "Make Predictions"],
         icons=["house", "clipboard-data", "bar-chart-line", "tools"],
         menu_icon="cast",
         default_index=0,
@@ -363,6 +363,8 @@ def main():
     elif selection == "CCLE Data Analysis":
         display_ccle_data_analysis()
 
+    elif selection == "Make Predictions":
+        new_data()
 
 if __name__ == "__main__":
     main()
