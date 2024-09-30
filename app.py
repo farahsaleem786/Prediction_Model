@@ -303,7 +303,7 @@ def main():
 
     selection = option_menu(
         menu_title=None,
-        options=["Home", "CTRP Data Analysis", "CCLE Data Analysis", "Make Predictions"],
+        options=["Home", "CTRP Data Analysis", "CCLE Data Analysis"],
         icons=["house", "clipboard-data", "bar-chart-line", "tools"],
         menu_icon="cast",
         default_index=0,
