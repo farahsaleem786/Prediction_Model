@@ -112,7 +112,6 @@ def plot_drug_cell_line_count(drug_cell_line_count):
 # Function to read CTRPv2 data
 def read_ctrp_data(file_path):
     data = pd.read_csv(file_path, sep='\t')
-    st.write(ctrp_data.head())
     required_columns = ['cpd_name', 'CCL_Name', 'area_under_curve', 'Avg_AUC']
     data = data[required_columns]
     data.columns = ['Drug', 'Cell_Line', 'AUC', 'Avg_AUC']
@@ -557,8 +556,11 @@ def display_ctrp_data_analysis():
 
     if os.path.exists(file_path):
         st.write("present")
-        ctrp_data = read_ctrp_data(file_path)
-        st.write(ctrp_data.head())
+        try:
+            ctrp_data = pd.read_csv(file_path, sep='\t')  # Try reading directly with pandas
+            st.write(ctrp_data.head())
+        except Exception as e:
+            st.error(f"Error while reading file: {e}")
     else:
         st.error(f"Error: File '{file_path}' not found.")
 
