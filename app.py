@@ -11,7 +11,7 @@ import numpy as np
 
 from ccle_analysis import display_ccle_data_analysis
 from ctrp_analysis import display_ctrp_data_analysis
-from make_Prediction import new_data
+
 
 # Function to load model results data
 def load_model_results():
@@ -363,8 +363,6 @@ def main():
     elif selection == "CCLE Data Analysis":
         display_ccle_data_analysis()
 
-    elif selection == "Make Predictions":
-        new_data()
 
 if __name__ == "__main__":
     main()
