@@ -52,7 +52,7 @@ from sklearn.base import BaseEstimator, RegressorMixin
 
 # Ensure reproducibility
 np.random.seed(12345)
-
+os.makedirs("DataOut", exist_ok=True)
 
 # Constants
 removeLowVaryingGenes = 0.2
@@ -79,6 +79,23 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.compose import ColumnTransformer, TransformedTargetRegressor
 from sklearn.base import BaseEstimator, RegressorMixin
+
+# Ensure reproducibility
+np.random.seed(12345)
+os.makedirs("DataOut", exist_ok=True)
+
+# Load data
+CTRPv2_AUC = pd.read_csv("./DataIn/CTRPv2/CTRPv2_AUC_clean.txt", sep="\t")
+CTRPv2_RNAseq_TPM = pd.read_csv("./DataIn/CTRPv2/CTRPv2_RNAseq_TPM_clean.txt", sep="\t")
+cpd_column = CTRPv2_AUC['cpd_name']
+unique_drugs = cpd_column.dropna().unique()
+possibleDrugs = unique_drugs
+# possibleDrugs = np.unique(CTRPv2_AUC['cpd_ame'])
+
+# Load best model parameters from CSV file
+best_params_df = pd.read_csv("./Output/ALL_DRUGS_ALL_MODELS.csv")
+
+
 def display_sample_file():
     st.subheader("Sample TSV File Format:")
     sample_data = {
@@ -91,19 +108,6 @@ def display_sample_file():
     sample_df = pd.DataFrame(sample_data)
     st.dataframe(sample_df)
     st.write("Upload a file with similar structure to proceed.")
-
-# Load data
-CTRPv2_AUC = pd.read_csv("./DataIn/CTRPv2/CTRPv2_AUC_clean.txt", sep="\t")
-st.write(CTRPv2_AUC.head())
-CTRPv2_RNAseq_TPM = pd.read_csv("./DataIn/CTRPv2/CTRPv2_RNAseq_TPM_clean.txt", sep="\t")
-best_params_df = pd.read_csv("./Output/ALL_DRUGS_ALL_MODELS.csv")
-cpd_column = CTRPv2_AUC['cpd_name']
-st.write("Testing")
-st.write(len(cpd_column))
-unique_drugs = cpd_column.dropna().unique()
-possibleDrugs = unique_drugs
-# possibleDrugs = np.unique(CTRPv2_AUC['cpd_name'])
-
 # Function to convert RPKM to TPM
 def RPKM_to_TPM(sample_RPKMs):
     return (sample_RPKMs / sample_RPKMs.sum()) * 10**6
