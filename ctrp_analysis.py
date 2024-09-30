@@ -555,7 +555,7 @@ def display_ctrp_data_analysis():
     file_path = "./DataIn/CTRPv2/CTRPv2_AUC_clean.txt"
 
     if os.path.exists(file_path):
-        st.write("present)
+        st.write("present")
         ctrp_data = read_ctrp_data(file_path)
         st.write(ctrp_data.head())
     else:
