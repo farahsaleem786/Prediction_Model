@@ -112,6 +112,7 @@ def plot_drug_cell_line_count(drug_cell_line_count):
 # Function to read CTRPv2 data
 def read_ctrp_data(file_path):
     data = pd.read_csv(file_path, sep='\t')
+    st.write(ctrp_data.head())
     required_columns = ['cpd_name', 'CCL_Name', 'area_under_curve', 'Avg_AUC']
     data = data[required_columns]
     data.columns = ['Drug', 'Cell_Line', 'AUC', 'Avg_AUC']
