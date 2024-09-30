@@ -548,7 +548,7 @@ def plot_avg_auc_distribution(ctrp_data):
 
 # Main function to display CTRP data analysis with interactive options
 def display_ctrp_data_analysis():
-    ctrp_data = read_ctrp_data("./DataIn/CTRPv2/CTRPv2_AUC_clean.txt")
+    ctrp_data = read_ctrp_data("DataIn/CTRPv2/CTRPv2_AUC_clean.txt")
     st.title("CTRP Drug Response Data Analysis")
     st.dataframe(ctrp_data, height=400, width=1500)
 
