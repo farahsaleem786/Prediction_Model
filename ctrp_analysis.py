@@ -9,6 +9,7 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
 import numpy as np
+import os
 # Function to calculate number of unique cell lines per drug
 def calculate_avg_auc_threshold_counts(ctrp_data, threshold):
     # Filter drugs based on the average AUC threshold
