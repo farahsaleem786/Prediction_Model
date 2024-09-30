@@ -549,7 +549,22 @@ def plot_avg_auc_distribution(ctrp_data):
 
 # Main function to display CTRP data analysis with interactive options
 def display_ctrp_data_analysis():
-    st.write("Current working directory:", os.getcwd())
+    current_dir = os.getcwd()
+    st.write("Current working directory:", current_dir)
+
+    # List the contents of the current directory
+    contents = os.listdir(current_dir)
+    st.write("Contents of the current directory:")
+    st.write(contents)
+
+    # Optionally, to explore subdirectories:
+    for item in contents:
+        item_path = os.path.join(current_dir, item)
+        if os.path.isdir(item_path):
+            st.write(f"Subdirectory: {item}")
+            sub_contents = os.listdir(item_path)
+            st.write(f"Contents of {item}:")
+            st.write(sub_contents)
     #ctrp_data = read_ctrp_data("DataIn/CTRPv2/CTRPv2_AUC_clean.txt")
  
 
